@@ -10,7 +10,7 @@ player1.x = 50;
 player1.y = 200;
 player1.width = 10;
 player1.height = 100;
-player1.color = "red";
+player1.color = "white";
 
 var player2 = new GameObject();
 
@@ -18,7 +18,7 @@ player2.x = canvas.width - 80;
 player2.y = 200;
 player2.width = 10;
 player2.height = 100;
-player2.color = "blue";
+player2.color = "white";
 
 var ball = new GameObject();
 
@@ -33,11 +33,21 @@ function animate()
 {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
+    context.save();
+    context.strokeStyle = "white";
+    context.beginPath();
+    context.moveTo(500, 0);
+    context.lineTo(500, 500);
+     context.closePath();
+     context.lineWidth = 5; 
+     context.stroke();
+     context.restore();
+
     context.font = "30px Arial";
-    context.fillStyle = "red";
+    context.fillStyle = "white";
     context.fillText(score1, canvas.width / 2 - 60, 40);
 
-    context.fillStyle = "blue";
+    context.fillStyle = "white";
     context.fillText(score2, canvas.width / 2 + 40, 40);
 
     player1.drawRect();
@@ -46,19 +56,20 @@ function animate()
 
     ball.x += ball.xSpeed;
     ball.y += ball.ySpeed;
+    
 
     if (ball.y + ball.radius >= canvas.height)
     {
         ball.y = canvas.height - ball.radius;
         ball.ySpeed = -Math.abs(ball.ySpeed);
-        ball.color = "yellow";
+        ball.color = "#e3ff2b";
     }
 
     if (ball.y - ball.radius <= 0)
     {
         ball.y = ball.radius;
         ball.ySpeed = Math.abs(ball.ySpeed);
-        ball.color = "green";
+        ball.color = "#e3ff2b";
     }
 
     if (ball.x + ball.radius >= canvas.width)
@@ -127,6 +138,7 @@ function animate()
     if (player1.y + player1.height > canvas.height)
     {
         player1.y = canvas.height - player1.height;
+        
     }
 
     if (player2.y < 0)

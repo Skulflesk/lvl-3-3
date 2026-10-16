@@ -1,5 +1,3 @@
-
-
 function GameObject()
 {
     this.x = 20;
@@ -21,28 +19,32 @@ function GameObject()
     {
         context.fillStyle = this.color;
         context.fillRect(this.x, this.y, this.width, this.height);
-        if (player1.x + player1.radius >= canvas.width)
-    {
-        player1.x = canvas.width - player1.radius;
-        player1.xSpeed = -player1.xSpeed;
     }
 
-    if (player1.x - player1.radius <= 0)
+    this.update = function()
     {
-        player1.x = player1.radius;
-        player1.xSpeed = -player1.xSpeed;
-    }
+        if (this.x + this.radius >= canvas.width)
+        {
+            this.x = canvas.width - this.radius;
+            this.xSpeed = -this.xSpeed;
+        }
 
-    if (player1.y + player1.radius >= canvas.height)
-    {
-        player1.y = canvas.height - player1.radius;
-        player1.ySpeed = -player1.ySpeed;
-    }
+        if (this.x - this.radius <= 0)
+        {
+            this.x = this.radius;
+            this.xSpeed = -this.xSpeed;
+        }
 
-    if (player1.y - player1.radius <= 0)
-    {
-        player1.y = player1.radius;
-        player1.ySpeed = -player1.ySpeed;
+        if (this.y + this.radius >= canvas.height)
+        {
+            this.y = canvas.height - this.radius;
+            this.ySpeed = -this.ySpeed * 10;
+        }
+
+        if (this.y - this.radius <= 0)
+        {
+            this.y = this.radius;
+            this.ySpeed = -this.ySpeed * 10;
+        }
     }
 }
-    }
