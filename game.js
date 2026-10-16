@@ -38,16 +38,13 @@ function animate()
     context.beginPath();
     context.moveTo(500, 0);
     context.lineTo(500, 500);
-     context.closePath();
-     context.lineWidth = 5; 
-     context.stroke();
-     context.restore();
+    context.lineWidth = 5;
+    context.stroke();
+    context.restore();
 
     context.font = "30px Arial";
     context.fillStyle = "white";
     context.fillText(score1, canvas.width / 2 - 60, 40);
-
-    context.fillStyle = "white";
     context.fillText(score2, canvas.width / 2 + 40, 40);
 
     player1.drawRect();
@@ -56,19 +53,20 @@ function animate()
 
     ball.x += ball.xSpeed;
     ball.y += ball.ySpeed;
-    
 
     if (ball.y + ball.radius >= canvas.height)
     {
         ball.y = canvas.height - ball.radius;
-        ball.ySpeed = -Math.abs(ball.ySpeed);
+        ball.ySpeed = -Math.abs(ball.ySpeed) * 1.03;
+        ball.xSpeed = ball.xSpeed * 1.03;
         ball.color = "#e3ff2b";
     }
 
     if (ball.y - ball.radius <= 0)
     {
         ball.y = ball.radius;
-        ball.ySpeed = Math.abs(ball.ySpeed);
+        ball.ySpeed = Math.abs(ball.ySpeed) * 1.03;
+        ball.xSpeed = ball.xSpeed * 1.03;
         ball.color = "#e3ff2b";
     }
 
@@ -138,7 +136,6 @@ function animate()
     if (player1.y + player1.height > canvas.height)
     {
         player1.y = canvas.height - player1.height;
-        
     }
 
     if (player2.y < 0)
